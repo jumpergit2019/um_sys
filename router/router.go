@@ -1,7 +1,9 @@
 package router
 
 import (
+	"net/http"
 	"um_sys/middleware/jwt"
+	"um_sys/pkg/upload"
 	"um_sys/router/api"
 
 	"github.com/gin-gonic/gin"
@@ -14,9 +16,11 @@ func InitRouter() {
 	r.POST("/api/login", api.Login)
 	r.POST("/api/platform_login", api.PlatformLogin)
 
-	userGroup := r.Group("/api/user")
-	userGroup.Use(jwt.Jwt())
+	chat := r.Group("/api/chat")
+	chat.Use(jwt.Jwt())
 	{
 
+		chat.StaticFS("/upload/images", http.Dir(upload.GetImageFullPath()))
+		chat.POST("/upload", api.UploadImage)
 	}
 }
