@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func InitRouter() {
+func InitRouter() *gin.Engine {
 	r := gin.Default()
 
 	r.POST("/api/register", api.Register)
@@ -23,4 +23,6 @@ func InitRouter() {
 		chat.StaticFS("/upload/images", http.Dir(upload.GetImageFullPath()))
 		chat.POST("/upload", api.UploadImage)
 	}
+
+	return r
 }

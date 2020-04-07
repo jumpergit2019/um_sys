@@ -2,11 +2,14 @@ package setting
 
 import (
 	"log"
+	"time"
 
 	"github.com/go-ini/ini"
 )
 
 type App struct {
+	JwtSecret string
+
 	PrefixUrl string
 
 	ImageSavePath  string
@@ -17,6 +20,26 @@ type App struct {
 }
 
 var AppSetting = &App{}
+
+type Server struct {
+	RunMode      string
+	HttpPort     int
+	ReadTimeout  time.Duration
+	WriteTimeout time.Duration
+}
+
+var ServerSetting = &Server{}
+
+type Database struct {
+	Type        string
+	User        string
+	Password    string
+	Host        string
+	Name        string
+	TablePrefix string
+}
+
+var DatabaseSetting = &Database{}
 
 var cfg *ini.File
 
@@ -29,6 +52,8 @@ func Setup() {
 	}
 
 	mapTo("app", AppSetting)
+	mapTo("server", ServerSetting)
+	mapTo("database", DatabaseSetting)
 
 	return
 }
