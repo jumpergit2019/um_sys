@@ -1,0 +1,14 @@
+package e
+
+const (
+	SUCCESS       = 200
+	ERROR         = 500
+	INVALID_PARAM = 400
+
+	ERROR_AUTH       = 600
+	ERROR_AUTH_TOKEN = 601
+
+	ERROR_AUTH_CHECK_TOKEN_TIMEOUT = 602
+	ERROR_AUTH_CHECK_TOKEN_FAIL    = 603
+	ERROR_EXIST_USER               = 604
+)

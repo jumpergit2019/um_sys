@@ -1,4 +1,4 @@
-package mysql
+package module
 
 type Account struct {
 	ID            uint64 `gorm:"primary_key;not null;auto_increment"`
