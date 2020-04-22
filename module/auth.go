@@ -13,12 +13,12 @@ type Auth struct {
 }
 
 func CheckAuth(email string, password string) (bool, error) {
-	var auth Auth
-	err := db.Select("id").Where(&Auth{Email: email, Password: password}).First(&auth).Error
+	var account Account
+	err := db.Select("id").Where("email = ? and password = ?", email, password).Find(&account).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return false, err
 	}
-	if auth.ID > 0 {
+	if account.ID > 0 {
 		return true, nil
 	}
 	return false, nil
@@ -26,13 +26,13 @@ func CheckAuth(email string, password string) (bool, error) {
 
 //检测用户是否存在
 func ExistEmail(email string) (bool, error) {
-	var auth Auth
-	err := db.Select("id").Where(&Auth{Email: email}).First(&auth).Error
+	var account Account
+	err := db.Select("id").Where("email = ?", email).Find(&account).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return false, err
 	}
 
-	if auth.ID > 0 {
+	if account.ID > 0 {
 		return true, nil
 	}
 
@@ -43,7 +43,6 @@ func ExistEmail(email string) (bool, error) {
 func Register(email string, password string) (uint64, error) {
 
 	var newId uint64
-
 	db.Transaction(func(tx *gorm.DB) error {
 		createAt := time.Now().Unix()
 		account := Account{
@@ -57,14 +56,14 @@ func Register(email string, password string) (uint64, error) {
 			return err
 		}
 
-		member := AccountMember{
-			Uid:      account.ID,
-			CreateAt: createAt,
-		}
-		err = tx.Create(&member).Error
-		if err != nil {
-			return err
-		}
+		//member := AccountMember{
+		//	Uid:      account.ID,
+		//	CreateAt: createAt,
+		//}
+		//err = tx.Create(&member).Error
+		//if err != nil {
+		//	return err
+		//}
 
 		newId = account.ID
 		return nil

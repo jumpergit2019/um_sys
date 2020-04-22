@@ -20,7 +20,7 @@ func Jwt() gin.HandlerFunc {
 		token := context.Query("token")
 
 		if token == "" {
-			code = e.INVALID_PARAM
+			code = e.ERROR_AUTH
 		} else {
 			_, err := util.ParseToken(token)
 			if err != nil {

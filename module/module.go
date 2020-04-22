@@ -30,7 +30,7 @@ func Setup() {
 
 	db.AutoMigrate(&Account{})
 	db.AutoMigrate(&AccountPlatform{})
-	db.AutoMigrate(&AccountMember{})
-	db.AutoMigrate(&AccountStaff{})
+	//db.AutoMigrate(&AccountMember{})
+	//db.AutoMigrate(&AccountStaff{})
 
 }

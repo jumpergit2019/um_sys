@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"um_sys/module"
 	"um_sys/pkg/setting"
@@ -19,7 +20,6 @@ func init() {
 
 func main() {
 
-	fmt.Println("========")
 	gin.SetMode(setting.ServerSetting.RunMode)
 
 	engine := router.InitRouter()
@@ -35,6 +35,8 @@ func main() {
 		WriteTimeout:   writeTimeout,
 		MaxHeaderBytes: maxHeaderBytes,
 	}
+
+	log.Printf("[info] start http server listening %s, timeout: %v, %v", endPoint, readTimeout, writeTimeout)
 
 	server.ListenAndServe()
 

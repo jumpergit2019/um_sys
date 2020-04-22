@@ -26,26 +26,27 @@ type AccountPlatform struct {
 	UpdateAt      int64  `gorm:"default:0"`
 }
 
-type AccountMember struct {
-	ID       uint64 `gorm:"primary_key;not null;auto_increment"`
-	Uid      uint64 `gorm:"default:0;index:uid"`
-	Nickname string `gorm:"size:30"`
-	Avatar   string `gorm:"default:''"`
-	Gender   string
-	Role     uint8 `gorm:"default:0"`
-	CreateAt int64 `gorm:"default:0"`
-	UpdateAt int64 `gorm:"default:0"`
-}
-
-type AccountStaff struct {
-	ID       uint64 `gorm:"primary_key;not null;auto_increment"`
-	Uid      uint64 `gorm:"default:0;index:uid"`
-	Email    string `gorm:"size:30;default:'';index:email"`
-	Phone    string `gorm:"size:15;default:'';index:phone"`
-	Name     string `gorm:"size:30;default:''"`
-	Nickname string `gorm:"size:30;default:''"`
-	Avatar   string `gorm:"default:''"`
-	Gender   string
-	CreateAt int64 `gorm:"default:0"`
-	UpdateAt int64 `gorm:"default:0"`
-}
+//
+//type AccountMember struct {
+//	ID       uint64 `gorm:"primary_key;not null;auto_increment"`
+//	Uid      uint64 `gorm:"default:0;index:uid"`
+//	Nickname string `gorm:"size:30"`
+//	Avatar   string `gorm:"default:''"`
+//	Gender   string
+//	Role     uint8 `gorm:"default:0"`
+//	CreateAt int64 `gorm:"default:0"`
+//	UpdateAt int64 `gorm:"default:0"`
+//}
+//
+//type AccountStaff struct {
+//	ID       uint64 `gorm:"primary_key;not null;auto_increment"`
+//	Uid      uint64 `gorm:"default:0;index:uid"`
+//	Email    string `gorm:"size:30;default:'';index:email"`
+//	Phone    string `gorm:"size:15;default:'';index:phone"`
+//	Name     string `gorm:"size:30;default:''"`
+//	Nickname string `gorm:"size:30;default:''"`
+//	Avatar   string `gorm:"default:''"`
+//	Gender   string
+//	CreateAt int64 `gorm:"default:0"`
+//	UpdateAt int64 `gorm:"default:0"`
+//}
